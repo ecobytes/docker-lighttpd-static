@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+
+  static:
+    build: .
+    environment:
+      VIRTUAL_HOST: ''
+      VIRTUAL_PORT: '80'
+    volumes:
+      - ./content/:/var/www
+      - ./lighttpd.conf:/etc/lighttpd/lighttpd.conf
+    expose:
+      - 80
+    networks:
+      - front-tier
+
+networks:
+
+  front-tier:
+    external:
+      name: nginx_default
