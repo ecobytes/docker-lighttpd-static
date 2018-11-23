@@ -7,16 +7,16 @@ services:
     environment:
       VIRTUAL_HOST: ''
       VIRTUAL_PORT: '80'
+      LETSENCRYPT_HOST: ''
+      LETSENCRYPT_EMAIL: 'status@ecobytes.net'
     volumes:
       - ./content/:/var/www
       - ./lighttpd.conf:/etc/lighttpd/lighttpd.conf
     expose:
       - 80
     networks:
-      - front-tier
+      - frontend-web
 
 networks:
-
-  front-tier:
-    external:
-      name: nginx_default
+  frontend-web:
+    external: true
